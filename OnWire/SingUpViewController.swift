@@ -24,6 +24,8 @@ class SingUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    
     @IBAction func handleLogin(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             print("Error")
