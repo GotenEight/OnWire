@@ -20,8 +20,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loginTextField.attributedPlaceholder = NSAttributedString(string: "Login", attributes: [NSForegroundColorAttributeName: UIColor.gray])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.gray])
+        loginTextField.attributedPlaceholder = NSAttributedString(string: "Login", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.white])
         
         loginTextField.layer.cornerRadius = 10
         passwordTextField.layer.cornerRadius = 10

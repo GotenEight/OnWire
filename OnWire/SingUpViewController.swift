@@ -13,18 +13,28 @@ class SingUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var singUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First name", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last name", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.white])
         
+        firstNameTextField.layer.cornerRadius = 10
+        lastNameTextField.layer.cornerRadius = 10
+        emailTextField.layer.cornerRadius = 10
+        passwordTextField.layer.cornerRadius = 10
+        singUpButton.layer.cornerRadius = 10
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     @IBAction func handleLogin(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
