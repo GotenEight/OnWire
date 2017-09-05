@@ -20,7 +20,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loginTextField.attributedPlaceholder = NSAttributedString(string: "Login", attributes: [NSForegroundColorAttributeName: UIColor.gray])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName: UIColor.gray])
         
+        loginTextField.layer.cornerRadius = 10
+        passwordTextField.layer.cornerRadius = 10
         singUpButton.layer.cornerRadius = 10
         singInButton.layer.cornerRadius = 10
     }
@@ -40,7 +44,6 @@ class LoginViewController: UIViewController {
             if error != nil {
             return
                 }
-            self.dismiss(animated: true, completion: nil)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AccountViewController")
             self.present(vc!, animated: true, completion: nil)
         })
