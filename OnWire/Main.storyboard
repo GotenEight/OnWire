@@ -184,6 +184,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="fotoImageView" destination="pEK-Cx-etu" id="8Y6-Yl-zwz"/>
+                                    <outlet property="nickNameLabel" destination="Lx5-UZ-zFL" id="Qbu-eI-gnn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class MessengerTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var fotoImageView: UIImageView!
+    @IBOutlet weak var nickNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        checkIfUserIsLoogedIn()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,5 +24,16 @@ class MessengerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func checkIfUserIsLoogedIn() {
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
+        let name =  Database.database().reference().child("users").child(uid!).observe(.value, with: { (name) in
+            if let dictionary = name.value as? [String: AnyObject] {
+                print(dictionary["nickName"])
+                let n = MessengerTableViewCell()
+                self.nickNameLabel.text = dictionary["nickName"] as! String
+            }
+        })
+    }
 }
