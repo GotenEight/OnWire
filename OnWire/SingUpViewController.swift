@@ -13,19 +13,16 @@ class SingUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var singUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        nickNameTextField.attributedPlaceholder = NSAttributedString(string: "Nick name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         emailTextField.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        firstNameTextField.layer.cornerRadius = 10
-        lastNameTextField.layer.cornerRadius = 10
+        nickNameTextField.layer.cornerRadius = 10
         emailTextField.layer.cornerRadius = 10
         passwordTextField.layer.cornerRadius = 10
         singUpButton.layer.cornerRadius = 10
@@ -37,12 +34,31 @@ class SingUpViewController: UIViewController {
     }
     
     @IBAction func handleLogin(_ sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-            print("Error")
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text, let nickName = nickNameTextField.text else {
             return
         }
+        if email == "" {
+            emailTextField.layer.borderWidth = 2
+            emailTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            emailTextField.layer.borderWidth = 0
+        }
+        if nickName == "" {
+            nickNameTextField.layer.borderWidth = 2
+            nickNameTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            nickNameTextField.layer.borderWidth = 0
+        }
+        if password == "" {
+            passwordTextField.layer.borderWidth = 2
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+        } else {
+            passwordTextField.layer.borderWidth = 0
+        }
+        if passwordTextField.layer.borderWidth + emailTextField.layer.borderWidth + nickNameTextField.layer.borderWidth == 0 {
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: { ( user, error) in if error != nil {
+            Auth.auth().createUser(withEmail: email, password: password, completion: { ( user, error) in if error != nil {
             return
             }
             
@@ -52,12 +68,15 @@ class SingUpViewController: UIViewController {
             
             let ref = Database.database().reference(fromURL: "https://onwire-42c2d.firebaseio.com/")
             let userReference = ref.child("users").child(uid)
-            let values = ["email": email,"password": password]
+                let values = ["email": email,"password": password,"nickName": nickName,]
             userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
                 if error != nil {
                     return
                 }
             })
         })
+        } else {
+            return
+        }
     }
 }
