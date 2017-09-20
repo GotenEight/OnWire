@@ -17,6 +17,8 @@
 		3EE69FF61F5C173900C9D86D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EE69FF51F5C173900C9D86D /* Assets.xcassets */; };
 		3EE69FF91F5C173900C9D86D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EE69FF71F5C173900C9D86D /* LaunchScreen.storyboard */; };
 		3EE6A0011F5C179400C9D86D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EE6A0001F5C179400C9D86D /* GoogleService-Info.plist */; };
+		3EEA05751F728F9800B1A9C5 /* MessengerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA05741F728F9800B1A9C5 /* MessengerTableViewCell.swift */; };
+		3EEA05771F72952500B1A9C5 /* MessengeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEA05761F72952500B1A9C5 /* MessengeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		3EE69FF81F5C173900C9D86D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EE69FFA1F5C173900C9D86D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EE6A0001F5C179400C9D86D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3EEA05741F728F9800B1A9C5 /* MessengerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerTableViewCell.swift; sourceTree = "<group>"; };
+		3EEA05761F72952500B1A9C5 /* MessengeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengeTableViewController.swift; sourceTree = "<group>"; };
 		647294EC7E2470F6AA34778B /* Pods-OnWire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnWire/Pods-OnWire.debug.xcconfig"; sourceTree = "<group>"; };
 		7EB129F554B81174AFF6076C /* Pods-OnWire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnWire.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnWire/Pods-OnWire.release.xcconfig"; sourceTree = "<group>"; };
 		84B3ED17C4EA7BD178219E39 /* Pods_OnWire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnWire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,8 @@
 				3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */,
 				3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */,
 				3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */,
+				3EEA05741F728F9800B1A9C5 /* MessengerTableViewCell.swift */,
+				3EEA05761F72952500B1A9C5 /* MessengeTableViewController.swift */,
 				3EE69FF51F5C173900C9D86D /* Assets.xcassets */,
 				3EAAD6441F5C1A3C00ED5EDD /* Main.storyboard */,
 				3EE69FF71F5C173900C9D86D /* LaunchScreen.storyboard */,
@@ -138,12 +144,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = EvM;
 				TargetAttributes = {
 					3EE69FE71F5C173900C9D86D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 34M53622EQ;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -248,6 +255,8 @@
 				3EAAD6411F5C19E800ED5EDD /* LoginViewController.swift in Sources */,
 				3EE69FF41F5C173900C9D86D /* OnWire.xcdatamodeld in Sources */,
 				3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */,
+				3EEA05751F728F9800B1A9C5 /* MessengerTableViewCell.swift in Sources */,
+				3EEA05771F72952500B1A9C5 /* MessengeTableViewController.swift in Sources */,
 				3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */,
 				3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */,
 			);
@@ -277,7 +286,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -285,7 +296,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -328,7 +343,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -336,7 +353,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -372,7 +393,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EvM.OnWire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -386,7 +408,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EvM.OnWire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
