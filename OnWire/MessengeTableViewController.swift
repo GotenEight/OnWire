@@ -11,13 +11,20 @@ import Firebase
 
 class MessengeTableViewController: UITableViewController {
     
+    var numberOfRow: Int = 20
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewHeader()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func tableViewHeader() {
+        let rect = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 100)
+        self.tableView.tableHeaderView = UIView(frame: rect)
+        self.tableView.tableHeaderView?.backgroundColor = UIColor.clear
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 90))
+        view.backgroundColor = UIColor(displayP3Red: 20.0/255.0, green: 139.0/255.0, blue: 223.0/255.0, alpha: 1.0)
+        self.tableView.tableHeaderView?.addSubview(view)
     }
 
     // MARK: - Table view data source
@@ -29,7 +36,7 @@ class MessengeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return numberOfRow
     }
 
     
@@ -40,6 +47,10 @@ class MessengeTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of MessengeTableViewCell.")
         }
         
+        
+        cell.expImageView.layer.borderWidth = 3
+        cell.expImageView.backgroundColor = UIColor.white
+        cell.expImageView.layer.cornerRadius = 10
         
         return cell
     }

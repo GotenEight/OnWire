@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/insinema/Documents/OnWire/OnWire/FirebaseManager.swift">
+   </FileRef>
+   <FileRef
       location = "group:OnWire.xcodeproj">
    </FileRef>
    <FileRef

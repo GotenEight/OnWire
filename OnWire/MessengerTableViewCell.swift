@@ -11,12 +11,15 @@ import Firebase
 
 class MessengerTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var fotoImageView: UIImageView!
+    
     @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var expImageView: UIImageView!
+    
+    var pointNumber: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkIfUserIsLoogedIn()
+      //  checkIfUserIsLoogedIn()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,7 +27,7 @@ class MessengerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    /*
     func checkIfUserIsLoogedIn() {
         let user = Auth.auth().currentUser
         let uid = user?.uid
@@ -36,4 +39,5 @@ class MessengerTableViewCell: UITableViewCell {
             }
         })
     }
+    */
 }
