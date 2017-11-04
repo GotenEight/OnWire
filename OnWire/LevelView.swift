@@ -32,9 +32,9 @@ import UIKit
     
     @IBInspectable var outlineColor: UIColor = UIColor.white
     @IBInspectable var pointCounterColor: UIColor = UIColor(displayP3Red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
+    var counterColor: UIColor?
     
     override func draw(_ rect: CGRect) {
-        
         //crate	circle with start color
         let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         let radius: CGFloat = max(bounds.width, bounds.height)
@@ -73,6 +73,7 @@ import UIKit
             }
             */
             let counterColor = UIColor(displayP3Red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
+            self.counterColor = counterColor
             pathArray.append(path)
             pathArray[i].lineWidth = Constants.arcWidth
             counterColorArray.append(counterColor)

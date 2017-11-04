@@ -361,12 +361,45 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="circleVIew" destination="FgI-bi-L9o" id="WAa-am-fB5"/>
                         <outlet property="levelLabel" destination="rj3-qY-Rvl" id="lUF-Zc-oqt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1MV-yT-6rV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1564" y="109.29535232383809"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ScL-7Y-V27">
+            <objects>
+                <viewController id="e6f-Um-8C2" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wQu-C6-dlV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uty-H9-qsv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lrz-Vb-dMe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THy-Fq-dsm" customClass="Circle" customModule="OnWire" customModuleProvider="target">
+                                <rect key="frame" x="54.5" y="200.5" width="266.5" height="266.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="THy-Fq-dsm" secondAttribute="height" multiplier="1:1" id="ohc-nV-WhX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="THy-Fq-dsm" firstAttribute="centerY" secondItem="lrz-Vb-dMe" secondAttribute="centerY" id="7cV-8b-ar0"/>
+                            <constraint firstItem="THy-Fq-dsm" firstAttribute="centerX" secondItem="lrz-Vb-dMe" secondAttribute="centerX" id="Lzf-0P-Wzq"/>
+                            <constraint firstItem="THy-Fq-dsm" firstAttribute="height" secondItem="lrz-Vb-dMe" secondAttribute="height" multiplier="0.4" id="ur4-cG-aAV"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O6O-s7-8ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2473" y="109"/>
         </scene>
     </scenes>
     <resources>
@@ -377,6 +410,6 @@
         <image name="PasswordIcon" width="21" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zGY-Jc-MfK"/>
+        <segue reference="78W-4b-eC9"/>
     </inferredMetricsTieBreakers>
 </document>
