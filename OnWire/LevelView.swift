@@ -20,8 +20,7 @@ import UIKit
             return lineWidth / 2
         }
     }
-    
-    var numberOfPointsLvl = 7
+    @IBInspectable var counter: Int = 5
     var level = 1
     var pathArray = [UIBezierPath]()
     var counterColorArray = [UIColor]()
@@ -83,8 +82,8 @@ import UIKit
 
         
         // Create circle with points color
-        if numberOfPointsLvl > 0 {
-            for i in 1...numberOfPointsLvl {
+        if counter > 0 {
+            for i in 1...counter {
                 let angleDifference: CGFloat = .pi*2 - startAngle + endAngle
                 let arcLengthPerPoint = angleDifference / CGFloat(Constants.numberOfPoints)
                 let pointStartAngle = (.pi*3 / 2) * 1.0000001 + arcLengthPerPoint*CGFloat(i-1)
