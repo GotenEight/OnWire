@@ -14,13 +14,17 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LevelAndPoints()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
-    func LevelAndPoints() {
-        
+    func singOut() {
+        try? Auth.auth().signOut()
     }
-    @IBAction func pointButtonPressed(_ sender: pointsButton) {
-        LevelView.shared.counter += 1
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        singOut()
     }
+    
 }

@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
+@available(iOS 10.0, *)
 @IBDesignable  class LevelView: UIView {
     
     static let shared = LevelView()
@@ -60,17 +62,7 @@ import UIKit
                 g += 7.0
                 b += 2.5
             }
-          /*  if value > 11 && value < 16 {
-                r -= 25.0
-                g -= 10.0
-                b -= 3.0
-            }
-            if value > 16 && value < 21 {
-                r = r + 25.0
-                g = g + 10.0
-                b = b + 3.0
-            }
-            */
+         
             let counterColor = UIColor(displayP3Red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
             self.counterColor = counterColor
             pathArray.append(path)
