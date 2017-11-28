@@ -121,7 +121,7 @@
         <!--Sing Up View Controller-->
         <scene sceneID="Acn-Wk-AlL">
             <objects>
-                <viewController storyboardIdentifier="SingUpViewController" id="ETH-y7-88e" customClass="SingUpViewController" customModule="OnWire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" id="ETH-y7-88e" customClass="SingUpViewController" customModule="OnWire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IpW-r2-DAA"/>
                         <viewControllerLayoutGuide type="bottom" id="wMU-FM-M79"/>

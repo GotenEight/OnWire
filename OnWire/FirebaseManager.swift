@@ -18,6 +18,7 @@ class FirebaseManager: NSObject {
     
     override init() {
         super.init()
+        authListner()
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             guard let connected = snapshot.value as? Bool else {
@@ -88,12 +89,12 @@ class FirebaseManager: NSObject {
     fileprivate func presentInitialViewController(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        var vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        var vc = storyboard.instantiateViewController(withIdentifier: "Login")
         
         if currentUser != nil {
-            vc = storyboard.instantiateViewController(withIdentifier: "TapBarViewController")
+            vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
         } else {
-            vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            vc = storyboard.instantiateViewController(withIdentifier: "Login")
         }
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate{

@@ -15,6 +15,8 @@ class SingUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var singUpButton: UIButton!
     
+    let myKeychainWrapper = KeychainWrapper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
@@ -30,55 +32,30 @@ class SingUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getTimestamp(date: Date)->NSNumber?{
+        let dateFormatter : DateFormatter = {
+            let dateF = DateFormatter()
+            dateF.dateFormat = "MMM dd yyyy"
+            return dateF
+        }()
+        let str = dateFormatter.string(from: date)
+        var timestamp : NSNumber?
+        if let strippedDate = dateFormatter.date(from: str){
+            timestamp = NSNumber(value: strippedDate.timeIntervalSince1970 as Double)
+        }
+        return timestamp
+    }
+    
     @IBAction func handleLogin(_ sender: UIButton) {
-        /*
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-            return
-        }
-        if email == "" {
-            emailTextField.layer.borderWidth = 2
-            emailTextField.layer.borderColor = UIColor.red.cgColor
-        } else {
-            emailTextField.layer.borderWidth = 0
-        }
         
-        if password == "" {
-            passwordTextField.layer.borderWidth = 2
-            passwordTextField.layer.borderColor = UIColor.red.cgColor
-        } else {
-            passwordTextField.layer.borderWidth = 0
-        }
-        if passwordTextField.layer.borderWidth + emailTextField.layer.borderWidth == 0 {
-        
-            Auth.auth().createUser(withEmail: email, password: password, completion: { ( user, error) in if error != nil {
-            return
-            }
-            
-            guard let uid = user?.uid else {
-                return
-            }
-            
-            let ref = Database.database().reference(fromURL: "https://onwire-42c2d.firebaseio.com/")
-            let userReference = ref.child("users").child(uid)
-                let values = ["email": email,"password": password]
-            userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                if error != nil {
-                    return
-                }
-            })
-        })
-        } else {
-            return
-        }
-    */
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
-        activityView.show(delay: nil)
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-            self.activityView.hide()
+
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error{
                 self.showError(error.localizedDescription)
                 return
             }
+            
             var dict = ["userId":FirebaseManager.shared.currentUser?.uid ?? "",
                         "email":email,
                         "platform":"iOS"]
@@ -95,20 +72,17 @@ class SingUpViewController: UIViewController {
             defaults.synchronize()
             self.myKeychainWrapper.mySetObject(password, forKey:kSecValueData)
             self.myKeychainWrapper.writeToKeychain()
-            if DatabaseMigrateHelper.databaseExist(){
-                let alert = UIAlertController(title: "Local Database Exists", message: "Do you want to migrate your local database?", preferredStyle: .alert)
-                let migrateAction = UIAlertAction(title: "Migrate", style: .default, handler: { (action) in
-                    self.migrateDatabase()
-                })
-                alert.addAction(migrateAction)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-                    self.preloadDatabase()
-                })
-                alert.addAction(cancelAction)
-                self.present(alert, animated: true, completion: nil)
-            }else{
-                self.preloadDatabase()
-            }
+            FirebaseManager.shared.showScreen(type: .initial)
         })
+    }
+    
+    func showError(_ message:String){
+        let alertController = UIAlertController(title: "Oops!", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            alertController.dismiss(animated: true, completion:nil)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        return
     }
 }

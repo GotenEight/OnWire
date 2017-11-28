@@ -14,6 +14,7 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    
     class var shared: AppDelegate{
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FirebaseManager.shared.authListner()
+        FirebaseManager.shared
         return true
     }
 

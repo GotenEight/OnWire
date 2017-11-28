@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     static let loginKey = "login"
-    
+    let myKeychainWrapper = KeychainWrapper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +62,8 @@ class LoginViewController: UIViewController {
             }
             UserDefaults.standard.setValue(email, forKey: LoginViewController.loginKey)
             UserDefaults.standard.synchronize()
+            self.myKeychainWrapper.mySetObject(password, forKey:kSecValueData)
+            self.myKeychainWrapper.writeToKeychain()
             
             FirebaseManager.shared.showScreen(type: .initial)
         })

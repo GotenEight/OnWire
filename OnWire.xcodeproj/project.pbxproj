@@ -9,14 +9,15 @@
 /* Begin PBXBuildFile section */
 		3E3095BA1FCDEA6300719144 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095B91FCDEA6300719144 /* FirebaseManager.swift */; };
 		3E3095BC1FCDED8F00719144 /* FirebaseListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */; };
-		3E3095BE1FCDEF5400719144 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095BD1FCDEF5400719144 /* File.swift */; };
-		3E345C1C1FBED4A200E8845E /* EMUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E345C1B1FBED4A200E8845E /* EMUser.swift */; };
 		3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */; };
 		3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */; };
 		3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */; };
 		3EAAD6411F5C19E800ED5EDD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */; };
 		3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */; };
 		3EAAD6451F5C1A3C00ED5EDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EAAD6441F5C1A3C00ED5EDD /* Main.storyboard */; };
+		3ECB84BD1FCE18AE00B4A4E1 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB84BB1FCE18AD00B4A4E1 /* KeychainWrapper.m */; };
+		3ECB84BF1FCE193400B4A4E1 /* EMUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB84BE1FCE193400B4A4E1 /* EMUser.swift */; };
+		3ECB84C41FCE1B3F00B4A4E1 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB84C31FCE1B3E00B4A4E1 /* Template.m */; };
 		3EE69FF41F5C173900C9D86D /* OnWire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE69FF21F5C173900C9D86D /* OnWire.xcdatamodeld */; };
 		3EE69FF61F5C173900C9D86D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EE69FF51F5C173900C9D86D /* Assets.xcassets */; };
 		3EE69FF91F5C173900C9D86D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EE69FF71F5C173900C9D86D /* LaunchScreen.storyboard */; };
@@ -27,14 +28,18 @@
 /* Begin PBXFileReference section */
 		3E3095B91FCDEA6300719144 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListner.swift; sourceTree = "<group>"; };
-		3E3095BD1FCDEF5400719144 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		3E345C1B1FBED4A200E8845E /* EMUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMUser.swift; sourceTree = "<group>"; };
 		3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 		3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EAAD6441F5C1A3C00ED5EDD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3ECB84BA1FCE18AD00B4A4E1 /* OnWire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnWire-Bridging-Header.h"; sourceTree = "<group>"; };
+		3ECB84BB1FCE18AD00B4A4E1 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainWrapper.m; path = "../../Attendance-Manager/Attendance Manager/KeychainWrapper.m"; sourceTree = "<group>"; };
+		3ECB84BC1FCE18AE00B4A4E1 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainWrapper.h; path = "../../Attendance-Manager/Attendance Manager/KeychainWrapper.h"; sourceTree = "<group>"; };
+		3ECB84BE1FCE193400B4A4E1 /* EMUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMUser.swift; sourceTree = "<group>"; };
+		3ECB84C21FCE1B3E00B4A4E1 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Template.h; path = "../../Attendance-Manager/Attendance Manager/Template.h"; sourceTree = "<group>"; };
+		3ECB84C31FCE1B3E00B4A4E1 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Template.m; path = "../../Attendance-Manager/Attendance Manager/Template.m"; sourceTree = "<group>"; };
 		3EE69FE81F5C173900C9D86D /* OnWire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnWire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE69FF31F5C173900C9D86D /* OnWire.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OnWire.xcdatamodel; sourceTree = "<group>"; };
 		3EE69FF51F5C173900C9D86D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,18 +95,22 @@
 				3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */,
 				3E3095B91FCDEA6300719144 /* FirebaseManager.swift */,
 				3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */,
-				3E3095BD1FCDEF5400719144 /* File.swift */,
 				3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */,
 				3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */,
 				3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */,
 				3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */,
-				3E345C1B1FBED4A200E8845E /* EMUser.swift */,
+				3ECB84BE1FCE193400B4A4E1 /* EMUser.swift */,
+				3ECB84C21FCE1B3E00B4A4E1 /* Template.h */,
+				3ECB84C31FCE1B3E00B4A4E1 /* Template.m */,
+				3ECB84BC1FCE18AE00B4A4E1 /* KeychainWrapper.h */,
+				3ECB84BB1FCE18AD00B4A4E1 /* KeychainWrapper.m */,
 				3EE69FF51F5C173900C9D86D /* Assets.xcassets */,
 				3EAAD6441F5C1A3C00ED5EDD /* Main.storyboard */,
 				3EE69FF71F5C173900C9D86D /* LaunchScreen.storyboard */,
 				3EE69FFA1F5C173900C9D86D /* Info.plist */,
 				3EE6A0001F5C179400C9D86D /* GoogleService-Info.plist */,
 				3EE69FF21F5C173900C9D86D /* OnWire.xcdatamodeld */,
+				3ECB84BA1FCE18AD00B4A4E1 /* OnWire-Bridging-Header.h */,
 			);
 			path = OnWire;
 			sourceTree = "<group>";
@@ -159,7 +168,7 @@
 					3EE69FE71F5C173900C9D86D = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 34M53622EQ;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -273,11 +282,12 @@
 				3EAAD6411F5C19E800ED5EDD /* LoginViewController.swift in Sources */,
 				3E3095BC1FCDED8F00719144 /* FirebaseListner.swift in Sources */,
 				3EE69FF41F5C173900C9D86D /* OnWire.xcdatamodeld in Sources */,
+				3ECB84C41FCE1B3F00B4A4E1 /* Template.m in Sources */,
 				3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */,
 				3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */,
-				3E3095BE1FCDEF5400719144 /* File.swift in Sources */,
+				3ECB84BF1FCE193400B4A4E1 /* EMUser.swift in Sources */,
 				3E3095BA1FCDEA6300719144 /* FirebaseManager.swift in Sources */,
-				3E345C1C1FBED4A200E8845E /* EMUser.swift in Sources */,
+				3ECB84BD1FCE18AE00B4A4E1 /* KeychainWrapper.m in Sources */,
 				3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */,
 				3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */,
 			);
@@ -409,6 +419,7 @@
 			baseConfigurationReference = 647294EC7E2470F6AA34778B /* Pods-OnWire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 34M53622EQ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = OnWire/Info.plist;
@@ -416,6 +427,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EvM.OnWire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnWire/OnWire-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -426,6 +439,7 @@
 			baseConfigurationReference = 7EB129F554B81174AFF6076C /* Pods-OnWire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 34M53622EQ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = OnWire/Info.plist;
@@ -433,6 +447,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.EvM.OnWire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnWire/OnWire-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
