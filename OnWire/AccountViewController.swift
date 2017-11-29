@@ -10,27 +10,21 @@ import UIKit
 import Firebase
 
 class AccountViewController: UIViewController {
+    @IBOutlet weak var levelLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    @IBAction func logOut(_ sender: UIButton) {
-        handleLogin()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
-    func handleLogin() {
-        
-        do {
-            try Auth.auth().signOut()
-        } catch let loggoutError {
-            print (loggoutError)
-        }
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-        self.present(vc!, animated: true, completion: nil)
+    func singOut() {
+        try? Auth.auth().signOut()
     }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        singOut()
+    }
+    
 }

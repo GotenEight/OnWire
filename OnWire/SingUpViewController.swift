@@ -13,19 +13,15 @@ class SingUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var singUpButton: UIButton!
+    
+    let myKeychainWrapper = KeychainWrapper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "First name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "Last name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         emailTextField.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        firstNameTextField.layer.cornerRadius = 10
-        lastNameTextField.layer.cornerRadius = 10
         emailTextField.layer.cornerRadius = 10
         passwordTextField.layer.cornerRadius = 10
         singUpButton.layer.cornerRadius = 10
@@ -36,28 +32,57 @@ class SingUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func handleLogin(_ sender: UIButton) {
-        guard let email = emailTextField.text, let password = passwordTextField.text else {
-            print("Error")
-            return
+    func getTimestamp(date: Date)->NSNumber?{
+        let dateFormatter : DateFormatter = {
+            let dateF = DateFormatter()
+            dateF.dateFormat = "MMM dd yyyy"
+            return dateF
+        }()
+        let str = dateFormatter.string(from: date)
+        var timestamp : NSNumber?
+        if let strippedDate = dateFormatter.date(from: str){
+            timestamp = NSNumber(value: strippedDate.timeIntervalSince1970 as Double)
         }
+        return timestamp
+    }
+    
+    @IBAction func handleLogin(_ sender: UIButton) {
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: { ( user, error) in if error != nil {
-            return
-            }
-            
-            guard let uid = user?.uid else {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+            if let error = error{
+                self.showError(error.localizedDescription)
                 return
             }
             
-            let ref = Database.database().reference(fromURL: "https://onwire-42c2d.firebaseio.com/")
-            let userReference = ref.child("users").child(uid)
-            let values = ["email": email,"password": password]
-            userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
-                if error != nil {
-                    return
-                }
-            })
+            var dict = ["userId":FirebaseManager.shared.currentUser?.uid ?? "",
+                        "email":email,
+                        "platform":"iOS"]
+            if let timestamp = self.getTimestamp(date:Date()){
+                dict["signUpDate"] = "\(timestamp)"
+            }
+            if let regionCode = Locale.current.regionCode{
+                dict["regionCode"] = regionCode
+            }
+            FirebaseManager.shared.updateUserWithInfo(data: dict)
+            
+            let defaults = UserDefaults.standard
+            defaults.setValue(email, forKey: LoginViewController.loginKey)
+            defaults.synchronize()
+            self.myKeychainWrapper.mySetObject(password, forKey:kSecValueData)
+            self.myKeychainWrapper.writeToKeychain()
+            FirebaseManager.shared.showScreen(type: .initial)
         })
+    }
+    
+    func showError(_ message:String){
+        let alertController = UIAlertController(title: "Oops!", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+            alertController.dismiss(animated: true, completion:nil)
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        return
     }
 }
