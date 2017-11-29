@@ -43,14 +43,6 @@ class LoginViewController: UIViewController {
     @IBAction func handleLogin(_ sender: UIButton) {
         guard let email = loginTextField.text, let password = passwordTextField.text else {return}
         login(email: email, password: password)
-        
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-            if error != nil {
-            return
-                }
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AccountViewController")
-            self.present(vc!, animated: true, completion: nil)
-        })
     }
     
     func login(email:String,password:String){

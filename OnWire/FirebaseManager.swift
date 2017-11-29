@@ -78,7 +78,7 @@ class FirebaseManager: NSObject {
         }
         
         let identifier = type == .login ? "LogIn": "SignUp"
-        let sbName = "Login"
+        let sbName = "Main"
         let storyboard = UIStoryboard(name: sbName, bundle: nil)
         let loginVC = storyboard.instantiateViewController(withIdentifier: identifier)
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate{
@@ -88,21 +88,12 @@ class FirebaseManager: NSObject {
     
     fileprivate func presentInitialViewController(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        var vc = storyboard.instantiateViewController(withIdentifier: "Login")
-        
-        if currentUser != nil {
-            vc = storyboard.instantiateViewController(withIdentifier: "AccountViewController")
-        } else {
-            vc = storyboard.instantiateViewController(withIdentifier: "Login")
+        let vc = storyboard.instantiateInitialViewController() as? UITabBarController
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            if let window = appDelegate?.window, let vc = vc {
+                vc.selectedIndex = 2
+                window.rootViewController = vc
         }
-        
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate{
-            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
-            appDelegate.window?.rootViewController = vc
-            appDelegate.window?.makeKeyAndVisible()
-        }
-        
     }
     
     func signOut(){
@@ -137,5 +128,4 @@ class FirebaseManager: NSObject {
         
         ref.updateChildValues(data)
     }
-    
 }
