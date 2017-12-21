@@ -11,7 +11,11 @@ import UIKit
 class ProgressButton: UIButton {
   
     override func draw(_ rect: CGRect) {
-        let doYourPath = UIBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height))
+        let numberOfProgress: CGFloat = 6
+        let proccentNumber: CGFloat = numberOfProgress * 5
+        self.setTitle("\(numberOfProgress)%", for: .normal)
+        let width = (self.frame.size.width / 20)
+        let doYourPath = UIBezierPath(rect: CGRect(x: 0.0, y: 0.0, width: width * numberOfProgress , height: self.frame.size.height))
         let layer = CAShapeLayer()
         layer.path = doYourPath.cgPath
         layer.fillColor = UIColor.green.cgColor
