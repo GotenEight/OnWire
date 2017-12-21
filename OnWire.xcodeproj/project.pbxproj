@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2478801FEBB75400C7976B /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E24787F1FEBB75400C7976B /* ProgressButton.swift */; };
 		3E3095BA1FCDEA6300719144 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095B91FCDEA6300719144 /* FirebaseManager.swift */; };
 		3E3095BC1FCDED8F00719144 /* FirebaseListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */; };
+		3E33DD701FD55ABE00831D88 /* BranchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */; };
+		3E4A9F921FD4936B00C9A2AF /* BranchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */; };
 		3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */; };
 		3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */; };
 		3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */; };
@@ -29,8 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E24787F1FEBB75400C7976B /* ProgressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressButton.swift; sourceTree = "<group>"; };
 		3E3095B91FCDEA6300719144 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListner.swift; sourceTree = "<group>"; };
+		3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesTableViewCell.swift; sourceTree = "<group>"; };
+		3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesViewController.swift; sourceTree = "<group>"; };
 		3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 		3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 		3EAAD63B1F5C19B500ED5EDD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */,
 				3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */,
 				3EB799D61FCED67A0075504F /* MoreViewController.swift */,
 				3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */,
@@ -97,6 +104,7 @@
 				3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */,
 				3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */,
 				3ECB84BE1FCE193400B4A4E1 /* EMUser.swift */,
+				3E24787F1FEBB75400C7976B /* ProgressButton.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -144,6 +152,7 @@
 				3EE6A0001F5C179400C9D86D /* GoogleService-Info.plist */,
 				3EE69FF21F5C173900C9D86D /* OnWire.xcdatamodeld */,
 				3ECB84BA1FCE18AD00B4A4E1 /* OnWire-Bridging-Header.h */,
+				3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */,
 			);
 			path = OnWire;
 			sourceTree = "<group>";
@@ -312,10 +321,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4A9F921FD4936B00C9A2AF /* BranchesViewController.swift in Sources */,
 				3EAAD6411F5C19E800ED5EDD /* LoginViewController.swift in Sources */,
 				3E3095BC1FCDED8F00719144 /* FirebaseListner.swift in Sources */,
 				3EE69FF41F5C173900C9D86D /* OnWire.xcdatamodeld in Sources */,
+				3E33DD701FD55ABE00831D88 /* BranchesTableViewCell.swift in Sources */,
 				3ECB84C41FCE1B3F00B4A4E1 /* Template.m in Sources */,
+				3E2478801FEBB75400C7976B /* ProgressButton.swift in Sources */,
 				3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */,
 				3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */,
 				3ECB84BF1FCE193400B4A4E1 /* EMUser.swift in Sources */,

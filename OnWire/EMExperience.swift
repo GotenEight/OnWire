@@ -17,7 +17,7 @@ enum EMExperienceConst: String {
     case isDeleted = "isDeleted"
 }
 
-final class EMExperience: NSObject {
+final class EMExperience: EMObject {
     var branchName: String!
     var presentImage: UIImage?
     var level: Int!
