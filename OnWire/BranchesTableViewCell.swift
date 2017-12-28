@@ -9,9 +9,8 @@
 import UIKit
 
 class BranchesTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var ProgressButton: ProgressButton!
     @IBOutlet weak var branchName: UILabel!
-    @IBOutlet weak var branchProgressView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

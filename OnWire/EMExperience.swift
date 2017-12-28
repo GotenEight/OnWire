@@ -11,7 +11,6 @@ import UIKit
 enum EMExperienceConst: String {
     case id = "id"
     case branchName = "branchName"
-    case presentImage = "presentImage"
     case level = "level"
     case experiencePoints = "experiencePoints"
     case isDeleted = "isDeleted"
@@ -19,7 +18,6 @@ enum EMExperienceConst: String {
 
 final class EMExperience: EMObject {
     var branchName: String!
-    var presentImage: UIImage?
     var level: Int!
     var experiencePoints: Int!
     var isDeleted: NSNumber!
@@ -38,16 +36,12 @@ final class EMExperience: EMObject {
         self.experiencePoints = experiencePoints
         self.isDeleted = isDeleted as NSNumber!
         
-        if let presentImage = info[EMExperienceConst.presentImage.rawValue] as? UIImage{
-            self.presentImage = presentImage
-        }
     }
     
     init(_ model: EMExperience) {
         super.init()
         objectId = model.objectId
         branchName = model.branchName
-        presentImage = model.presentImage
         level = model.level
         experiencePoints = model.experiencePoints
         isDeleted = model.isDeleted

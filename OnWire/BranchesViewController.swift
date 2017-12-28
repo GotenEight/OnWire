@@ -7,29 +7,87 @@
 //
 
 import UIKit
+import Firebase
+
+@objc protocol BranchViewControllerDelegate: class{
+    func createBranch(branch: EMExperience)
+}
 
 class BranchesViewController: UITableViewController {
-
+    var numberOfSection = 0
+    var exp: [EMExperience] = []
+    var delegate: BranchViewControllerDelegate?
+    var infoBranch: [String:Any]?
+    var branchArray: [[String:Any]] = []
+    var branchesDict: [String:EMExperience]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setNavigationViewController()
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseListner.shared.addListner(listner: self, notificationType: FirebaseListnerNotification.branch, selector: #selector(branchAdded))
+        branchAdded()
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setNavigationViewController() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        navigationController?.navigationBar.backgroundColor = UIColor.blue
+    }
+    
+    @objc func branchAdded(){
+        self.branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
+    }
+    
+    @objc func addButtonPressed() {
+        let level = 0
+        let experiencePoints = 0
+        let isDeleted: NSNumber = false
+        
+        let alert = UIAlertController(title: "Branch",
+                                      message: "Add branch",
+                                      preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save",
+                                       style: .default) { action in
+                                        let textField = alert.textFields![0]
+                                        var dict = ["branchName": textField.text!,
+                                                    "level": level,
+                                                    "experiencePoints": experiencePoints,
+                                                    "isDeleted": isDeleted ] as [String:Any]
+                                        FirebaseManager.shared.createBranch(dict, completion: { branchId,info in
+                                            dict[EMExperienceConst.id.rawValue] = branchId
+                                            self.branchArray.append(info)
+                                            if let branch = EMExperience(info: dict){
+                                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                                                    self.delegate?.createBranch(branch: branch)                                               })
+                                            }
+                                        })
+                                        self.tableView.reloadData()
+                }
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .default)
+        
+        alert.addTextField()
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return branchArray.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,54 +98,7 @@ class BranchesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "branchesCell", for: indexPath) as! BranchesTableViewCell
-
+    
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
