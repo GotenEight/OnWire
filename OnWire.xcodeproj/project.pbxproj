@@ -12,13 +12,11 @@
 		3E33DD701FD55ABE00831D88 /* BranchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */; };
 		3E4A9F921FD4936B00C9A2AF /* BranchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */; };
 		3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */; };
-		3E6DA8CC1FF5024A0081DE17 /* ProgressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6DA8CB1FF5024A0081DE17 /* ProgressButton.swift */; };
 		3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */; };
 		3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */; };
 		3EAAD6411F5C19E800ED5EDD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */; };
 		3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */; };
 		3EAAD6451F5C1A3C00ED5EDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EAAD6441F5C1A3C00ED5EDD /* Main.storyboard */; };
-		3EB799D71FCED67A0075504F /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB799D61FCED67A0075504F /* MoreViewController.swift */; };
 		3EB799E11FCEDC0A0075504F /* EMExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB799E01FCEDC0A0075504F /* EMExperience.swift */; };
 		3EB799E31FCEE2710075504F /* EMObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB799E21FCEE2710075504F /* EMObject.swift */; };
 		3ECB84BD1FCE18AE00B4A4E1 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECB84BB1FCE18AD00B4A4E1 /* KeychainWrapper.m */; };
@@ -37,13 +35,11 @@
 		3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesTableViewCell.swift; sourceTree = "<group>"; };
 		3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesViewController.swift; sourceTree = "<group>"; };
 		3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
-		3E6DA8CB1FF5024A0081DE17 /* ProgressButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProgressButton.swift; path = ../../../.Trash/ProgressButton.swift; sourceTree = "<group>"; };
 		3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingUpViewController.swift; sourceTree = "<group>"; };
 		3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EAAD6441F5C1A3C00ED5EDD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		3EB799D61FCED67A0075504F /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		3EB799E01FCEDC0A0075504F /* EMExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMExperience.swift; sourceTree = "<group>"; };
 		3EB799E21FCEE2710075504F /* EMObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMObject.swift; sourceTree = "<group>"; };
 		3ECB84BA1FCE18AD00B4A4E1 /* OnWire-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnWire-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -80,7 +76,6 @@
 			children = (
 				3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */,
 				3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */,
-				3EB799D61FCED67A0075504F /* MoreViewController.swift */,
 				3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */,
 				3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */,
 			);
@@ -105,7 +100,6 @@
 				3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */,
 				3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */,
 				3ECB84BE1FCE193400B4A4E1 /* EMUser.swift */,
-				3E6DA8CB1FF5024A0081DE17 /* ProgressButton.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -327,7 +321,6 @@
 				3EE69FF41F5C173900C9D86D /* OnWire.xcdatamodeld in Sources */,
 				3E33DD701FD55ABE00831D88 /* BranchesTableViewCell.swift in Sources */,
 				3ECB84C41FCE1B3F00B4A4E1 /* Template.m in Sources */,
-				3E6DA8CC1FF5024A0081DE17 /* ProgressButton.swift in Sources */,
 				3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */,
 				3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */,
 				3ECB84BF1FCE193400B4A4E1 /* EMUser.swift in Sources */,
@@ -335,7 +328,6 @@
 				3E3095BA1FCDEA6300719144 /* FirebaseManager.swift in Sources */,
 				3ECB84BD1FCE18AE00B4A4E1 /* KeychainWrapper.m in Sources */,
 				3EB799E31FCEE2710075504F /* EMObject.swift in Sources */,
-				3EB799D71FCED67A0075504F /* MoreViewController.swift in Sources */,
 				3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */,
 				3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */,
 			);

@@ -10,6 +10,7 @@ import UIKit
 
 @objc enum FirebaseListnerNotification: Int {
     case
+    branch,
     settings,
     user
 }
@@ -24,12 +25,15 @@ class FirebaseListner: NSObject {
         return _shared!
     }
     
+     private var _branchSet = Set<EMExperience>()
+    
     fileprivate var outgoingNotifications = NSCountedSet()
     
     var user: EMUser?
     
     override init() {
         super.init()
+        branchListner()
         settingsListner()
         userListner()
     }
@@ -39,6 +43,18 @@ class FirebaseListner: NSObject {
     }
     
       //MARK: Listners
+    
+    func branchListner(){
+        FirebaseManager.shared.branchAdded { (branch) in
+            self._branchSet.insert(branch)
+            self.postNotification(type: .branch)
+        }
+        
+        FirebaseManager.shared.branchChanged { (branch) in
+            self._branchSet.update(with: branch)
+            self.postNotification(type: .branch)
+        }
+    }
     
     func settingsListner(){
     }
@@ -53,6 +69,27 @@ class FirebaseListner: NSObject {
             self.user?.updateUser(info: info)
             self.postNotification(type: .user)
         }
+    }
+    
+    //branch
+    func branchSet(includeDeleted:Bool)->Set<EMExperience>{
+        if includeDeleted{
+            return _branchSet
+        }else{
+            let filtered = _branchSet.filter({ (branch) -> Bool in
+                return !branch.isDeleted.boolValue
+            })
+            return Set(filtered)
+        }
+    }
+    
+    func studentDict(includeDeleted:Bool)->[String:EMExperience]{
+        let set = FirebaseListner.shared.branchSet(includeDeleted: includeDeleted)
+        var branchDict = [String:EMExperience]()
+        for branch in set{
+            branchDict[branch.objectId] = branch
+        }
+        return branchDict
     }
     
     //MARK: FirebaseListnerNotifications

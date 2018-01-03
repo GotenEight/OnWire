@@ -128,4 +128,49 @@ class FirebaseManager: NSObject {
         
         ref.updateChildValues(data)
     }
+    
+    //MARK: Students
+    
+    func branchAdded(completion: @escaping (_ branch: EMExperience)->Void){
+        guard let currentUserId = self.userId else {return}
+        let _ref = ref.child("users/\(currentUserId)/branches")
+        
+        _ref.observe(.childAdded, with: {(snap) in
+            guard let info = snap.value as? [String:Any], let branch = EMExperience(info: info) else{
+                return
+            }
+            completion(branch)
+        })
+    }
+    
+    func branchChanged(completion: @escaping (_ branch: EMExperience)->Void){
+        guard let currentUserId = self.userId else {return}
+        let _ref = ref.child("users/\(currentUserId)/branches")
+        
+        _ref.observe(.childChanged, with: {(snap) in
+            guard let info = snap.value as? [String:Any], let branch = EMExperience(info: info) else{
+                return
+            }
+            completion(branch)
+        })
+    }
+    
+    //Create student with given information
+    func createBranch(_ info:[String:Any],completion:(_ objectId:String)->Void){
+        guard let currentUserId = self.userId else {return}
+        let _ref = ref.child("users/\(currentUserId)/branches")
+        let objectId = _ref.childByAutoId().key
+        var updatedInfo = info
+        updatedInfo["id"] = objectId
+        _ref.updateChildValues([objectId:updatedInfo])
+        completion(objectId)
+    }
+    
+    //Update excisting student with given information
+    func updateBranch(_ branchId:String,info:[String:Any]){
+        guard let currentUserId = self.userId else {return}
+        let data = info
+        ref.child("users/\(currentUserId)/branches\(branchId)").updateChildValues(data)
+    }
+
 }

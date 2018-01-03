@@ -44,7 +44,7 @@ class BranchesViewController: UITableViewController {
     }
     
     @objc func branchAdded(){
-        self.branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
+       // self.branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
     }
     
     @objc func addButtonPressed() {
@@ -63,9 +63,8 @@ class BranchesViewController: UITableViewController {
                                                     "level": level,
                                                     "experiencePoints": experiencePoints,
                                                     "isDeleted": isDeleted ] as [String:Any]
-                                        FirebaseManager.shared.createBranch(dict, completion: { branchId,info in
+                                        FirebaseManager.shared.createBranch(dict, completion: { branchId in
                                             dict[EMExperienceConst.id.rawValue] = branchId
-                                            self.branchArray.append(info)
                                             if let branch = EMExperience(info: dict){
                                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                                                     self.delegate?.createBranch(branch: branch)                                               })
