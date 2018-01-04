@@ -11,9 +11,14 @@ import Firebase
 
 class AccountViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var levelView: LevelView!
+    var experiencePoints: Int!
+    var level: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.levelView.counter = experiencePoints
+        self.levelLabel.text = level
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

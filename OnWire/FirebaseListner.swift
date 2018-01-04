@@ -83,7 +83,7 @@ class FirebaseListner: NSObject {
         }
     }
     
-    func studentDict(includeDeleted:Bool)->[String:EMExperience]{
+    func branchDict(includeDeleted:Bool)->[String:EMExperience]{
         let set = FirebaseListner.shared.branchSet(includeDeleted: includeDeleted)
         var branchDict = [String:EMExperience]()
         for branch in set{

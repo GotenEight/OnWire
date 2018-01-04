@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 
-@available(iOS 10.0, *)
 @IBDesignable  class LevelView: UIView {
     
     static let shared = LevelView()
@@ -22,8 +21,7 @@ import Firebase
             return lineWidth / 2
         }
     }
-    @IBInspectable var counter: Int = 5
-    var level = 1
+    var counter: Int!
     var pathArray = [UIBezierPath]()
     var counterColorArray = [UIColor]()
     var r: CGFloat = 230.0
@@ -32,7 +30,7 @@ import Firebase
     var value = 0
     
     @IBInspectable var outlineColor: UIColor = UIColor.white
-    @IBInspectable var pointCounterColor: UIColor = UIColor(displayP3Red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
+    @IBInspectable var pointCounterColor = UIColor.init(red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
     var counterColor: UIColor?
     
     override func draw(_ rect: CGRect) {
@@ -63,7 +61,7 @@ import Firebase
                 b += 2.5
             }
          
-            let counterColor = UIColor(displayP3Red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
+            let counterColor = UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
             self.counterColor = counterColor
             pathArray.append(path)
             pathArray[i].lineWidth = Constants.arcWidth

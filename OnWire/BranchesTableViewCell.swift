@@ -10,6 +10,11 @@ import UIKit
 
 class BranchesTableViewCell: UITableViewCell {
     @IBOutlet weak var branchName: UILabel!
+    @IBOutlet weak var branchLvl: UILabel!
+    @IBOutlet weak var branchProccentage: UILabel!
+    @IBOutlet weak var progressView: ProgressView!
+    var experiencePoints: Int!
+    var branchLvlString: String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,7 +23,7 @@ class BranchesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

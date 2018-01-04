@@ -20,11 +20,15 @@ class BranchesViewController: UITableViewController {
     var infoBranch: [String:Any]?
     var branchArray: [[String:Any]] = []
     var branchesDict: [String:EMExperience]?
+    var valueArray: [EMExperience] = []
+    var keysArray: [String] = []
+    var selectBranch: EMExperience?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationViewController()
-        
+        setFirebase()
+        print(valueArray)
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +42,25 @@ class BranchesViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    func setFirebase() {
+        branchesDict = FirebaseListner.shared.branchDict(includeDeleted: true)
+        if branchesDict != nil {
+            for (key,value) in branchesDict! {
+                valueArray.append(value)
+                valueArray.sort(by: {$0.branchName<$1.branchName})
+                keysArray.append(key)
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
     func setNavigationViewController() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         navigationController?.navigationBar.backgroundColor = UIColor.blue
     }
     
     @objc func branchAdded(){
-       // self.branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
+        self.branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
     }
     
     @objc func addButtonPressed() {
@@ -86,18 +102,37 @@ class BranchesViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return branchArray.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return valueArray.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "branchesCell", for: indexPath) as! BranchesTableViewCell
-    
+        let branch = valueArray[indexPath.row]
+        print(branch.branchName)
+        cell.branchName.text = branch.branchName
+        cell.branchProccentage.text = String(branch.experiencePoints * 5) + "%"
+        cell.branchLvl.text = String(branch.level) + " level"
+        cell.experiencePoints = branch.experiencePoints
+        cell.branchLvlString = String(branch.level)
+        print(branch.level)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let cell = tableView.cellForRow(at: indexPath) as? BranchesTableViewCell{
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = sb.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController {
+                vc.experiencePoints = cell.experiencePoints
+                vc.level = cell.branchLvlString
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
