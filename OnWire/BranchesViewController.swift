@@ -28,23 +28,23 @@ class BranchesViewController: UITableViewController {
         super.viewDidLoad()
         setNavigationViewController()
         setFirebase()
-        print(valueArray)
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseListner.shared.addListner(listner: self, notificationType: FirebaseListnerNotification.branch, selector: #selector(branchAdded))
-        branchAdded()
+        FirebaseListner.shared.addListner(listner: self, notificationType: FirebaseListnerNotification.branch, selector: #selector(setFirebase))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+        self.tableView.reloadData()
     }
     
-    func setFirebase() {
-        branchesDict = FirebaseListner.shared.branchDict(includeDeleted: true)
+    @objc func setFirebase() {
+        branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
         if branchesDict != nil {
+            self.valueArray = []
             for (key,value) in branchesDict! {
                 valueArray.append(value)
                 valueArray.sort(by: {$0.branchName<$1.branchName})
@@ -57,10 +57,6 @@ class BranchesViewController: UITableViewController {
     func setNavigationViewController() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         navigationController?.navigationBar.backgroundColor = UIColor.blue
-    }
-    
-    @objc func branchAdded(){
-        self.branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
     }
     
     @objc func addButtonPressed() {
@@ -85,8 +81,10 @@ class BranchesViewController: UITableViewController {
                                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                                                     self.delegate?.createBranch(branch: branch)                                               })
                                             }
+                                                self.valueArray = []
+                                                self.setFirebase()
+                                                self.tableView.reloadData()
                                         })
-                                        self.tableView.reloadData()
                 }
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .default)
@@ -97,7 +95,7 @@ class BranchesViewController: UITableViewController {
         alert.addAction(cancelAction)
         
         present(alert, animated: true, completion: nil)
-        
+        self.tableView.reloadData()
     }
     // MARK: - Table view data source
 
