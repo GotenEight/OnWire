@@ -15,11 +15,12 @@ import Firebase
     
     
     override func draw(_ rect: CGRect) {
+        let width = ((self.bounds.width / 20) * CGFloat(points))
         let green = UIColor.green
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.layer.masksToBounds = true
-        let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: self.bounds.width / CGFloat(20 - points), height: self.bounds.height))
+        let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: width, height: self.bounds.height))
         green.setFill()
         path.fill()
     }

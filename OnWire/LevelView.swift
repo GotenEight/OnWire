@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-@IBDesignable  class LevelView: UIView {
+ class LevelView: UIView {
     
     static let shared = LevelView()
     
@@ -28,9 +28,10 @@ import Firebase
     var g: CGFloat = 243.0
     var b: CGFloat = 252.0
     var value = 0
+    var level: Int!
     
-    @IBInspectable var outlineColor: UIColor = UIColor.white
-    @IBInspectable var pointCounterColor = UIColor.init(red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
+     var outlineColor: UIColor = UIColor.white
+     var pointCounterColor = UIColor.init(red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
     var counterColor: UIColor?
     
     override func draw(_ rect: CGRect) {

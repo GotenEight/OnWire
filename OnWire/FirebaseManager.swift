@@ -165,12 +165,16 @@ class FirebaseManager: NSObject {
         _ref.updateChildValues([objectId:updatedInfo])
         completion(objectId)
     }
+    func deleteBranch(_ branchId: String) {
+        guard let currentUserId = self.userId else {return}
+        ref.child("users/\(currentUserId)/branches/\(branchId)").removeValue()
+    }
     
     //Update excisting student with given information
     func updateBranch(_ branchId:String,info:[String:Any]){
         guard let currentUserId = self.userId else {return}
         let data = info
-        ref.child("users/\(currentUserId)/branches\(branchId)").updateChildValues(data)
+        ref.child("users/\(currentUserId)/branches/\(branchId)").updateChildValues(data)
     }
 
 }

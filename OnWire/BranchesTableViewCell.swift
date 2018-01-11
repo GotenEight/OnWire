@@ -15,6 +15,9 @@ class BranchesTableViewCell: UITableViewCell {
     @IBOutlet weak var progressView: ProgressView!
     var experiencePoints: Int!
     var branchLvlString: String!
+    var branchId: String!
+    var lvlInt: Int!
+    var branchArray: EMExperience?
     
     override func awakeFromNib() {
         super.awakeFromNib()

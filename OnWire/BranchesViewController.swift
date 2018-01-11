@@ -27,12 +27,11 @@ class BranchesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationViewController()
-        setFirebase()
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseListner.shared.addListner(listner: self, notificationType: FirebaseListnerNotification.branch, selector: #selector(setFirebase))
+        setFirebase()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,7 +46,6 @@ class BranchesViewController: UITableViewController {
             self.valueArray = []
             for (key,value) in branchesDict! {
                 valueArray.append(value)
-                valueArray.sort(by: {$0.branchName<$1.branchName})
                 keysArray.append(key)
             }
         }
@@ -60,8 +58,8 @@ class BranchesViewController: UITableViewController {
     }
     
     @objc func addButtonPressed() {
-        let level = 0
         let experiencePoints = 0
+        let level = 1
         let isDeleted: NSNumber = false
         
         let alert = UIAlertController(title: "Branch",
@@ -78,12 +76,11 @@ class BranchesViewController: UITableViewController {
                                         FirebaseManager.shared.createBranch(dict, completion: { branchId in
                                             dict[EMExperienceConst.id.rawValue] = branchId
                                             if let branch = EMExperience(info: dict){
+                                                self.valueArray.append(branch)
                                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                                                     self.delegate?.createBranch(branch: branch)                                               })
                                             }
-                                                self.valueArray = []
-                                                self.setFirebase()
-                                                self.tableView.reloadData()
+                                            self.tableView.reloadData()
                                         })
                 }
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -104,7 +101,6 @@ class BranchesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return valueArray.count
     }
     
@@ -112,13 +108,16 @@ class BranchesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "branchesCell", for: indexPath) as! BranchesTableViewCell
         let branch = valueArray[indexPath.row]
-        print(branch.branchName)
         cell.branchName.text = branch.branchName
         cell.branchProccentage.text = String(branch.experiencePoints * 5) + "%"
+        cell.progressView.points = branch.experiencePoints
         cell.branchLvl.text = String(branch.level) + " level"
         cell.experiencePoints = branch.experiencePoints
         cell.branchLvlString = String(branch.level)
-        print(branch.level)
+        cell.branchId = branch.objectId
+        cell.lvlInt = branch.level
+        cell.branchArray = branch
+        cell.progressView.setNeedsDisplay()
         return cell
     }
     
@@ -129,8 +128,23 @@ class BranchesViewController: UITableViewController {
         if let vc = sb.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController {
                 vc.experiencePoints = cell.experiencePoints
                 vc.level = cell.branchLvlString
+                vc.branchId = cell.branchId
+                vc.lvlInt = cell.lvlInt
+                vc.array = cell.branchArray
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
+    }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            selectBranch = valueArray[indexPath.row]
+            valueArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        FirebaseManager.shared.deleteBranch((selectBranch?.objectId)!)
     }
 }
