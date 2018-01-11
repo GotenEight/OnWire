@@ -26,6 +26,8 @@ class AccountViewController: UIViewController {
         self.levelLabel.text = String(lvlInt)
         self.levelView.level = lvlInt
         
+        title = array?.branchName
+        
         plus.layer.borderWidth = 0.5
         plus.layer.cornerRadius = 10
         minus.layer.borderWidth = 0.5

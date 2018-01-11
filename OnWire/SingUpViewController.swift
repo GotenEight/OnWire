@@ -11,6 +11,7 @@ import Firebase
 
 class SingUpViewController: UIViewController {
     
+    @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var singUpButton: UIButton!
@@ -19,9 +20,11 @@ class SingUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nickNameTextField.attributedPlaceholder = NSAttributedString(string: "Nick name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         emailTextField.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
+        nickNameTextField.layer.cornerRadius = 10
         emailTextField.layer.cornerRadius = 10
         passwordTextField.layer.cornerRadius = 10
         singUpButton.layer.cornerRadius = 10
@@ -48,7 +51,7 @@ class SingUpViewController: UIViewController {
     
     @IBAction func handleLogin(_ sender: UIButton) {
         
-        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+        guard let nickName = nickNameTextField.text, let email = emailTextField.text, let password = passwordTextField.text else {return}
 
             Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error{
@@ -64,6 +67,9 @@ class SingUpViewController: UIViewController {
             }
             if let regionCode = Locale.current.regionCode{
                 dict["regionCode"] = regionCode
+            }
+            if let nickName = self.nickNameTextField.text {
+                dict["nickName"] = nickName
             }
             FirebaseManager.shared.updateUserWithInfo(data: dict)
             

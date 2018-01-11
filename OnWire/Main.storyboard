@@ -244,6 +244,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="orf-Yj-dNc" id="xjF-Xk-Ggh"/>
+                        <outlet property="nickNameTextField" destination="yMP-md-i6O" id="kb3-SM-dAU"/>
                         <outlet property="passwordTextField" destination="bmV-p9-4J6" id="LR8-xZ-e1h"/>
                         <outlet property="singUpButton" destination="DhJ-Gy-Btv" id="1Nw-Ob-UcK"/>
                     </connections>
@@ -454,7 +455,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LNv-xs-JdX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="5" width="60" height="33.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="zAk-JF-eR1"/>
                                                     </constraints>
@@ -462,12 +463,12 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="LNv-xs-JdX" secondAttribute="bottom" id="FVI-Fr-bvA"/>
+                                                <constraint firstAttribute="bottom" secondItem="LNv-xs-JdX" secondAttribute="bottom" constant="5" id="FVI-Fr-bvA"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rti-ci-uQD" secondAttribute="trailing" id="HRA-6f-cWD"/>
                                                 <constraint firstItem="LNv-xs-JdX" firstAttribute="leading" secondItem="KU8-Bb-59P" secondAttribute="leading" id="ZXs-Cw-fPR"/>
                                                 <constraint firstItem="Rti-ci-uQD" firstAttribute="top" secondItem="KU8-Bb-59P" secondAttribute="top" id="pL0-wW-UMQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Rti-ci-uQD" secondAttribute="bottom" id="qRw-Yg-86r"/>
-                                                <constraint firstItem="LNv-xs-JdX" firstAttribute="top" secondItem="KU8-Bb-59P" secondAttribute="top" id="uHf-2p-AGa"/>
+                                                <constraint firstItem="LNv-xs-JdX" firstAttribute="top" secondItem="KU8-Bb-59P" secondAttribute="top" constant="5" id="uHf-2p-AGa"/>
                                                 <constraint firstItem="Rti-ci-uQD" firstAttribute="leading" secondItem="LNv-xs-JdX" secondAttribute="trailing" constant="5" id="zHd-GI-IcF"/>
                                             </constraints>
                                         </view>

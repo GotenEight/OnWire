@@ -17,6 +17,7 @@ class EMUser: NSObject {
     var regionCode: String?
     var signUpDate: String?
     var subscriptionExpiration: NSNumber?
+    var nickName: String!
     
     required init(userId: String) {
         super.init()
@@ -41,6 +42,9 @@ class EMUser: NSObject {
         }
         if let subscriptionPlatform = info["subscriptionPlatform"] as? String{
             self.subscriptionPlatform = subscriptionPlatform
+        }
+        if let nickName = info["nickName"] as? String {
+            self.nickName = nickName
         }
     }
 }
