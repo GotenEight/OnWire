@@ -25,7 +25,8 @@ class AccountViewController: UIViewController {
         self.levelView.counter = experiencePoints
         self.levelLabel.text = String(lvlInt)
         self.levelView.level = lvlInt
-        
+        let image = UIImage(named: "FirstNameIcon")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(branchTasks))
         title = array?.branchName
         
         plus.layer.borderWidth = 0.5
@@ -40,6 +41,10 @@ class AccountViewController: UIViewController {
     
     func singOut() {
         try? Auth.auth().signOut()
+    }
+    
+    @objc func branchTasks() {
+        performSegue(withIdentifier: "task", sender: nil)
     }
     
     func setFirebase() {
