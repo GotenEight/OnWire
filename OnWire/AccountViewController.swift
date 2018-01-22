@@ -49,7 +49,7 @@ class AccountViewController: UIViewController {
     
     func setFirebase() {
         if self.levelView.level != nil {
-            var dict = ["branchName": array?.branchName,
+            let dict = ["branchName": array?.branchName,
                         "level": self.lvlInt,
                         "experiencePoints": self.levelView.counter,
                         "isDeleted": false ] as [String:Any]

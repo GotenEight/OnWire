@@ -11,11 +11,18 @@ import Firebase
 
 class SingUpViewController: UIViewController {
     
+    
+    @IBOutlet weak var frameView: UIView!
+    @IBOutlet weak var frameViewEqualHightConstraint: NSLayoutConstraint!
     @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var singUpButton: UIButton!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
+    var keyboardInfo: NSDictionary?
+    var keyboardIsShown = false
     let myKeychainWrapper = KeychainWrapper()
     
     override func viewDidLoad() {
@@ -24,16 +31,95 @@ class SingUpViewController: UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "E-mail", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SingUpViewController.frameViewTapped(_:)))
+        frameView.addGestureRecognizer(tap)
+        
         nickNameTextField.layer.cornerRadius = 10
         emailTextField.layer.cornerRadius = 10
         passwordTextField.layer.cornerRadius = 10
         singUpButton.layer.cornerRadius = 10
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(SingUpViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(SingUpViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    //MARK: Keyboard
+    @objc func keyboardWillHide(_ notification:Notification){
+        keyboardInfo = (notification as NSNotification).userInfo as NSDictionary?
+        hideKeyboard()
+    }
+    
+    func hideKeyboard(){
+        if !keyboardIsShown{
+            return
+        }
+        var animationDuration = 0.4
+        if let ad = (keyboardInfo?.object(forKey: UIKeyboardAnimationDurationUserInfoKey) as AnyObject).doubleValue{
+            animationDuration = ad
+        }
+        
+        scrollViewBottomConstraint.constant = 0
+        frameViewEqualHightConstraint.constant = 0
+        
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.scrollView.layoutIfNeeded()
+        })
+        keyboardIsShown = false
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification){
+        if keyboardIsShown{
+            return
+        }
+        
+        keyboardInfo = (notification as NSNotification).userInfo as NSDictionary?
+        let userInfo:NSDictionary = (notification as NSNotification).userInfo! as NSDictionary
+        let keyboardFrame:NSValue = userInfo.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        
+        var animationDuration = 0.4
+        if let ad = (keyboardInfo?.object(forKey: UIKeyboardAnimationDurationUserInfoKey) as AnyObject).doubleValue{
+            animationDuration = ad
+        }
+        
+        frameViewEqualHightConstraint.constant = keyboardHeight
+        scrollViewBottomConstraint.constant += keyboardHeight
+        let when = DispatchTime.now()+0.1
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.scrollView.layoutIfNeeded()
+                var frame = self.singUpButton.frame
+                frame.size.height += 20
+                self.scrollView.scrollRectToVisible(frame, animated: true)
+            })
+        }
+        
+        keyboardIsShown = true
+    }
+    
+    @objc func frameViewTapped(_ sender:UITapGestureRecognizer){
+        dismissKeyboard()
+    }
+    
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
+    
     
     func getTimestamp(date: Date)->NSNumber?{
         let dateFormatter : DateFormatter = {
