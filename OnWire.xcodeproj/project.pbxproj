@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E24D0592021BE48008CAB1F /* PlaningTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E24D0582021BE48008CAB1F /* PlaningTableViewController.swift */; };
+		3E24D05B2021BE56008CAB1F /* PlaningTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E24D05A2021BE56008CAB1F /* PlaningTableViewCell.swift */; };
 		3E276D852007ABF100E909BC /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E276D842007ABF100E909BC /* TaskViewController.swift */; };
 		3E3095BA1FCDEA6300719144 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095B91FCDEA6300719144 /* FirebaseManager.swift */; };
 		3E3095BC1FCDED8F00719144 /* FirebaseListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E24D0582021BE48008CAB1F /* PlaningTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaningTableViewController.swift; sourceTree = "<group>"; };
+		3E24D05A2021BE56008CAB1F /* PlaningTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaningTableViewCell.swift; sourceTree = "<group>"; };
 		3E276D842007ABF100E909BC /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		3E3095B91FCDEA6300719144 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3E3095BB1FCDED8F00719144 /* FirebaseListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListner.swift; sourceTree = "<group>"; };
@@ -79,13 +83,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E24D0572021BD8D008CAB1F /* TableViewController and Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3E4392D920029AFE000B6494 /* MoreViewController.swift */,
+				3E4392DB20029B2A000B6494 /* MoreViewControllerCell.swift */,
+				3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */,
+				3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */,
+				3E24D0582021BE48008CAB1F /* PlaningTableViewController.swift */,
+				3E24D05A2021BE56008CAB1F /* PlaningTableViewCell.swift */,
+			);
+			name = "TableViewController and Cell";
+			sourceTree = "<group>";
+		};
 		3EAAD63B1F5C19B500ED5EDD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				3E276D842007ABF100E909BC /* TaskViewController.swift */,
-				3E4392D920029AFE000B6494 /* MoreViewController.swift */,
-				3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */,
-				3E4392DB20029B2A000B6494 /* MoreViewControllerCell.swift */,
 				3EAAD63C1F5C19D600ED5EDD /* SingUpViewController.swift */,
 				3EAAD63E1F5C19E100ED5EDD /* AccountViewController.swift */,
 				3EAAD6401F5C19E800ED5EDD /* LoginViewController.swift */,
@@ -105,7 +119,6 @@
 		3EB799D91FCED8420075504F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */,
 				3EB799E01FCEDC0A0075504F /* EMExperience.swift */,
 				3EB799E21FCEE2710075504F /* EMObject.swift */,
 				3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */,
@@ -114,13 +127,6 @@
 				3ECB84BE1FCE193400B4A4E1 /* EMUser.swift */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		3EB799DA1FCED8570075504F /* Objective-C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Objective-C";
 			sourceTree = "<group>";
 		};
 		3EE69FDF1F5C173900C9D86D = {
@@ -144,7 +150,7 @@
 		3EE69FEA1F5C173900C9D86D /* OnWire */ = {
 			isa = PBXGroup;
 			children = (
-				3EB799DA1FCED8570075504F /* Objective-C */,
+				3E24D0572021BD8D008CAB1F /* TableViewController and Cell */,
 				3EAAD63B1F5C19B500ED5EDD /* ViewControllers */,
 				3EB799D81FCED82D0075504F /* Firebase */,
 				3EB799D91FCED8420075504F /* Classes */,
@@ -333,6 +339,7 @@
 				3EE69FF41F5C173900C9D86D /* OnWire.xcdatamodeld in Sources */,
 				3E33DD701FD55ABE00831D88 /* BranchesTableViewCell.swift in Sources */,
 				3ECB84C41FCE1B3F00B4A4E1 /* Template.m in Sources */,
+				3E24D0592021BE48008CAB1F /* PlaningTableViewController.swift in Sources */,
 				3E276D852007ABF100E909BC /* TaskViewController.swift in Sources */,
 				3E4392DA20029AFE000B6494 /* MoreViewController.swift in Sources */,
 				3EAAD63F1F5C19E100ED5EDD /* AccountViewController.swift in Sources */,
@@ -344,6 +351,7 @@
 				3ECB84BD1FCE18AE00B4A4E1 /* KeychainWrapper.m in Sources */,
 				3EB799E31FCEE2710075504F /* EMObject.swift in Sources */,
 				3E87C7FB1FFD117B00F4710E /* ProgressView.swift in Sources */,
+				3E24D05B2021BE56008CAB1F /* PlaningTableViewCell.swift in Sources */,
 				3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */,
 				3EAAD63D1F5C19D600ED5EDD /* SingUpViewController.swift in Sources */,
 			);
