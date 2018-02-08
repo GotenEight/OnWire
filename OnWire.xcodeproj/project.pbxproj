@@ -15,6 +15,7 @@
 		3E33DD701FD55ABE00831D88 /* BranchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */; };
 		3E4392DA20029AFE000B6494 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4392D920029AFE000B6494 /* MoreViewController.swift */; };
 		3E4392DC20029B2A000B6494 /* MoreViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4392DB20029B2A000B6494 /* MoreViewControllerCell.swift */; };
+		3E44E633202B309200330E64 /* EMPlaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E44E632202B309200330E64 /* EMPlaning.swift */; };
 		3E4A9F921FD4936B00C9A2AF /* BranchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */; };
 		3E4FADBB1FA49EF7007F26D6 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */; };
 		3E87C7FB1FFD117B00F4710E /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E87C7FA1FFD117B00F4710E /* ProgressView.swift */; };
@@ -44,6 +45,7 @@
 		3E33DD6F1FD55ABE00831D88 /* BranchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesTableViewCell.swift; sourceTree = "<group>"; };
 		3E4392D920029AFE000B6494 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		3E4392DB20029B2A000B6494 /* MoreViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewControllerCell.swift; sourceTree = "<group>"; };
+		3E44E632202B309200330E64 /* EMPlaning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMPlaning.swift; sourceTree = "<group>"; };
 		3E4A9F911FD4936B00C9A2AF /* BranchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesViewController.swift; sourceTree = "<group>"; };
 		3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		3E87C7FA1FFD117B00F4710E /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				3EB799E01FCEDC0A0075504F /* EMExperience.swift */,
+				3E44E632202B309200330E64 /* EMPlaning.swift */,
 				3EB799E21FCEE2710075504F /* EMObject.swift */,
 				3EAAD6421F5C1A0F00ED5EDD /* AppDelegate.swift */,
 				3E4FADBA1FA49EF7007F26D6 /* LevelView.swift */,
@@ -350,6 +353,7 @@
 				3E3095BA1FCDEA6300719144 /* FirebaseManager.swift in Sources */,
 				3ECB84BD1FCE18AE00B4A4E1 /* KeychainWrapper.m in Sources */,
 				3EB799E31FCEE2710075504F /* EMObject.swift in Sources */,
+				3E44E633202B309200330E64 /* EMPlaning.swift in Sources */,
 				3E87C7FB1FFD117B00F4710E /* ProgressView.swift in Sources */,
 				3E24D05B2021BE56008CAB1F /* PlaningTableViewCell.swift in Sources */,
 				3EAAD6431F5C1A0F00ED5EDD /* AppDelegate.swift in Sources */,

@@ -9,7 +9,9 @@
 import UIKit
 
 class PlaningTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var planLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

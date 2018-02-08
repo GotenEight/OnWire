@@ -8,57 +8,50 @@
 
 import UIKit
 
-class PlaningTableViewController: UITableViewController {
+@objc protocol planOnDayViewControllerDelegate: class{
+    func createPlanOnDay(planOnDay: EMPlaning)
+}
 
+class PlaningTableViewController: UITableViewController {
+    
+    @IBOutlet weak var firstTimePicker: UIDatePicker!
+    @IBOutlet weak var secondTimePicker: UIDatePicker!
+    @IBOutlet weak var planTextField: UITextField!
+    var delegate: planOnDayViewControllerDelegate?
+    var valueArray: [EMPlaning] = []
+    var planOnDayDict: [String:EMPlaning]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setNavigationViewController()
+        setFirebase()
     }
-
-   /* @objc func addButtonPressed() {
-        let experiencePoints = 0
-        let level = 1
-        let isDeleted: NSNumber = false
-        
-        let alert = UIAlertController(title: "Branch",
-                                      message: "Add branch",
-                                      preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save",
-                                       style: .default) { action in
-                                        let textField = alert.textFields![0]
-                                        var dict = ["branchName": textField.text!,
-                                                    "level": level,
-                                                    "experiencePoints": experiencePoints,
-                                                    "isDeleted": isDeleted ] as [String:Any]
-                                        FirebaseManager.shared.createBranch(dict, completion: { branchId in
-                                            dict[EMExperienceConst.id.rawValue] = branchId
-                                            if let branch = EMExperience(info: dict){
-                                                self.valueArray.append(branch)
-                                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-                                                    self.delegate?.createBranch(branch: branch)                                               })
-                                            }
-                                            self.tableView.reloadData()
-                                        })
-        }
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .default)
-        
-        alert.addTextField()
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: true, completion: nil)
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FirebaseListner.shared.addListner(listner: self, notificationType: .planOnDay, selector: #selector(reloadTableView))
+        setFirebase()
+    }
+    
+    @objc func reloadTableView() {
         self.tableView.reloadData()
     }
-*/
-    // MARK: - Table view data source
+    
+    func setFirebase() {
+        planOnDayDict = FirebaseListner.shared.planOnDayDict(includeDeleted: false)
+        if planOnDayDict != nil {
+            self.valueArray = []
+            for (_,value) in planOnDayDict! {
+                valueArray.append(value)
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
+    func setNavigationViewController() {
+        navigationController?.navigationBar.backgroundColor = UIColor.init(red: 122.0/255.0, green: 232.0/255.0, blue: 251.0/255.0, alpha: 1.0)
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -67,61 +60,56 @@ class PlaningTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return valueArray.count
+    }
+    
+    func date(timeInterval:Double)->String{
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "HH:mm"
+        let date = Date(timeIntervalSince1970: timeInterval)
+        return formatter.string(from: date)
     }
 
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        
+        var dict = ["firstTime": firstTimePicker.date.timeIntervalSince1970,
+                    "secondTime": secondTimePicker.date.timeIntervalSince1970,
+                    "planText": planTextField.text,
+                    "isDeleted": false ] as [String:Any]
+        
+        FirebaseManager.shared.planOnDayCreate(dict, completion: { planOnDayId in
+            dict[EMPlaningConst.id.rawValue] = planOnDayId
+            if let planOnDay = EMPlaning(info: dict){
+                self.valueArray.append(planOnDay)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                    self.delegate?.createPlanOnDay(planOnDay: planOnDay)
+                })
+            }
+            self.tableView.reloadData()
+        })
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "planingCell", for: indexPath) as! PlaningTableViewCell
-
+        let planOnDay = valueArray[indexPath.row]
+        let fTime =  date(timeInterval: planOnDay.firstTime)
+        let sTime = date(timeInterval: planOnDay.secondTime)
+        cell.planLabel.text = planOnDay.planText
+        cell.timeLabel.text = "\(fTime)-\(sTime)"
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
  
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
