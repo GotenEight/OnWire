@@ -130,7 +130,42 @@ class FirebaseManager: NSObject {
     }
     
     //MARK: Students
+    func planOnDayAdded(completion: @escaping (_ planOnDay: EMPlaning)->Void){
+        guard let currentUserId = self.userId else {return}
+        let _ref = ref.child("users/\(currentUserId)/planOnDay")
+        
+        _ref.observe(.childAdded, with: {(snap) in
+            guard let info = snap.value as? [String:Any], let planOnDay = EMPlaning(info: info) else{
+                return
+            }
+            completion(planOnDay)
+        })
+    }
     
+    func planOnDayChanged(completion: @escaping (_ branch: EMPlaning)->Void){
+        guard let currentUserId = self.userId else {return}
+        let _ref = ref.child("users/\(currentUserId)/planOnDay")
+        
+        _ref.observe(.childChanged, with: {(snap) in
+            guard let info = snap.value as? [String:Any], let planOnDay = EMPlaning(info: info) else{
+                return
+            }
+            completion(planOnDay)
+        })
+    }
+    
+    func planOnDayCreate(_ info:[String:Any],completion:(_ objectId:String)->Void){
+        guard let currentUserId = self.userId else {return}
+        let _ref = ref.child("users/\(currentUserId)/planOnDay")
+        let objectId = _ref.childByAutoId().key
+        var updatedInfo = info
+        updatedInfo["id"] = objectId
+        _ref.updateChildValues([objectId:updatedInfo])
+        completion(objectId)
+    }
+    
+    
+    // branches
     func branchAdded(completion: @escaping (_ branch: EMExperience)->Void){
         guard let currentUserId = self.userId else {return}
         let _ref = ref.child("users/\(currentUserId)/branches")
@@ -165,6 +200,7 @@ class FirebaseManager: NSObject {
         _ref.updateChildValues([objectId:updatedInfo])
         completion(objectId)
     }
+    
     func deleteBranch(_ branchId: String) {
         guard let currentUserId = self.userId else {return}
         ref.child("users/\(currentUserId)/branches/\(branchId)").removeValue()
