@@ -26,21 +26,22 @@ class BranchesViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let user = FirebaseListner.shared.user
+        title = user?.nickName
         setNavigationViewController()
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        FirebaseListner.shared.addListner(listner: self, notificationType: .branch, selector: #selector(branchChanged))
         setFirebase()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-        self.tableView.reloadData()
     }
     
-    @objc func setFirebase() {
+    func setFirebase() {
         branchesDict = FirebaseListner.shared.branchDict(includeDeleted: false)
         if branchesDict != nil {
             self.valueArray = []
@@ -49,6 +50,10 @@ class BranchesViewController: UITableViewController {
                 keysArray.append(key)
             }
         }
+        self.tableView.reloadData()
+    }
+    
+    @objc func branchChanged() {
         self.tableView.reloadData()
     }
     
@@ -139,12 +144,59 @@ class BranchesViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            selectBranch = valueArray[indexPath.row]
-            valueArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            
+            let branch = self.valueArray[indexPath.row]
+            let alert = UIAlertController(title: "Delete",
+                                          message: "Are you shure?",
+                                          preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: "Delete",
+                                           style: .default) { action in
+                                            let dict = ["branchName":  branch.branchName,
+                                                        "level": branch.level,
+                                                        "experiencePoints": branch.experiencePoints,
+                                                        "isDeleted": true ] as [String:Any]
+                                            FirebaseManager.shared.updateBranch(self.valueArray[indexPath.row].objectId, info: dict)
+                                            self.valueArray.remove(at: indexPath.row)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .default)
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
         }
-        FirebaseManager.shared.deleteBranch((selectBranch?.objectId)!)
+        
+        let share = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            let branch = self.valueArray[indexPath.row]
+            let alert = UIAlertController(title: "Edit Branch",
+                                          message: "New branch Name",
+                                          preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: "Save",
+                                           style: .default) { action in
+                                            let textField = alert.textFields![0]
+                                            let dict = ["branchName": textField.text!,
+                                                        "level": branch.level,
+                                                        "experiencePoints": branch.experiencePoints,
+                                                        "isDeleted": branch.isDeleted ] as [String:Any]
+                                            self.valueArray[indexPath.row].branchName = textField.text!
+                                            FirebaseManager.shared.updateBranch(self.valueArray[indexPath.row].objectId, info: dict)
+                }
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .default)
+            
+            alert.addTextField()
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
+            }
+        share.backgroundColor = UIColor.blue
+        return [delete,share]
     }
 }

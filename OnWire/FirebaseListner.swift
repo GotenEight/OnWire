@@ -10,6 +10,7 @@ import UIKit
 
 @objc enum FirebaseListnerNotification: Int {
     case
+    planOnDay,
     branch,
     settings,
     user
@@ -25,7 +26,8 @@ class FirebaseListner: NSObject {
         return _shared!
     }
     
-     private var _branchSet = Set<EMExperience>()
+    private var _planOnDaySet = Set<EMPlaning>()
+    private var _branchSet = Set<EMExperience>()
     
     fileprivate var outgoingNotifications = NSCountedSet()
     
@@ -33,6 +35,7 @@ class FirebaseListner: NSObject {
     
     override init() {
         super.init()
+        planOnDayListner()
         branchListner()
         settingsListner()
         userListner()
@@ -43,6 +46,18 @@ class FirebaseListner: NSObject {
     }
     
       //MARK: Listners
+    func planOnDayListner(){
+        FirebaseManager.shared.planOnDayAdded { (planOnDay) in
+            self._planOnDaySet.insert(planOnDay)
+            self.postNotification(type: .planOnDay)
+        }
+        
+        FirebaseManager.shared.planOnDayChanged { (planOnDay) in
+            self._planOnDaySet.update(with: planOnDay)
+            self.postNotification(type: .planOnDay)
+        }
+    }
+    
     
     func branchListner(){
         FirebaseManager.shared.branchAdded { (branch) in
@@ -69,6 +84,27 @@ class FirebaseListner: NSObject {
             self.user?.updateUser(info: info)
             self.postNotification(type: .user)
         }
+    }
+    
+    //plan on day
+    func planOnDaySet(includeDeleted:Bool)->Set<EMPlaning>{
+        if includeDeleted{
+            return _planOnDaySet
+        }else{
+            let filtered = _planOnDaySet.filter({ (planOnDay) -> Bool in
+                return !planOnDay.isDeleted.boolValue
+            })
+            return Set(filtered)
+        }
+    }
+    
+    func planOnDayDict(includeDeleted:Bool)->[String:EMPlaning]{
+        let set = FirebaseListner.shared.planOnDaySet(includeDeleted: includeDeleted)
+        var planOnDayDict = [String:EMPlaning]()
+        for planOnDay in set{
+            planOnDayDict[planOnDay.objectId] = planOnDay
+        }
+        return planOnDayDict
     }
     
     //branch
