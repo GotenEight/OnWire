@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loginTextField.attributedPlaceholder = NSAttributedString(string: "Login", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController {
     }
     
     func login(email:String,password:String){
-
+        
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
             if let error = error{
                 self.showAlert(title:"Oops!", message: error.localizedDescription)

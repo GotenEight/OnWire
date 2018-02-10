@@ -138,8 +138,8 @@ class SingUpViewController: UIViewController {
     @IBAction func handleLogin(_ sender: UIButton) {
         
         guard let nickName = nickNameTextField.text, let email = emailTextField.text, let password = passwordTextField.text else {return}
-
-            Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error{
                 self.showError(error.localizedDescription)
                 return

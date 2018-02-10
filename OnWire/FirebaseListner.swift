@@ -45,7 +45,7 @@ class FirebaseListner: NSObject {
         FirebaseListner._shared = nil
     }
     
-      //MARK: Listners
+    //MARK: Listners
     func planOnDayListner(){
         FirebaseManager.shared.planOnDayAdded { (planOnDay) in
             self._planOnDaySet.insert(planOnDay)

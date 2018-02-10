@@ -30,7 +30,7 @@ class BranchesViewController: UITableViewController {
         title = user?.nickName
         setNavigationViewController()
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         FirebaseListner.shared.addListner(listner: self, notificationType: .branch, selector: #selector(branchChanged))
@@ -87,7 +87,7 @@ class BranchesViewController: UITableViewController {
                                             }
                                             self.tableView.reloadData()
                                         })
-                }
+        }
         let cancelAction = UIAlertAction(title: "Cancel",
                                          style: .default)
         
@@ -100,11 +100,11 @@ class BranchesViewController: UITableViewController {
         self.tableView.reloadData()
     }
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return valueArray.count
     }
@@ -129,8 +129,8 @@ class BranchesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let cell = tableView.cellForRow(at: indexPath) as? BranchesTableViewCell{
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = sb.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            if let vc = sb.instantiateViewController(withIdentifier: "AccountViewController") as? AccountViewController {
                 vc.experiencePoints = cell.experiencePoints
                 vc.level = cell.branchLvlString
                 vc.branchId = cell.branchId
@@ -185,7 +185,7 @@ class BranchesViewController: UITableViewController {
                                                         "isDeleted": branch.isDeleted ] as [String:Any]
                                             self.valueArray[indexPath.row].branchName = textField.text!
                                             FirebaseManager.shared.updateBranch(self.valueArray[indexPath.row].objectId, info: dict)
-                }
+            }
             let cancelAction = UIAlertAction(title: "Cancel",
                                              style: .default)
             
@@ -195,7 +195,7 @@ class BranchesViewController: UITableViewController {
             alert.addAction(cancelAction)
             
             self.present(alert, animated: true, completion: nil)
-            }
+        }
         share.backgroundColor = UIColor.blue
         return [delete,share]
     }

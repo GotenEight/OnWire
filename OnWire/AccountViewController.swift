@@ -53,7 +53,7 @@ class AccountViewController: UIViewController {
                         "level": self.lvlInt,
                         "experiencePoints": self.levelView.counter,
                         "isDeleted": false ] as [String:Any]
-        FirebaseManager.shared.updateBranch(branchId, info: dict)
+            FirebaseManager.shared.updateBranch(branchId, info: dict)
         }
     }
     

@@ -19,19 +19,19 @@ class MoreViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "More"
-       // createVersionFooter()
+        // createVersionFooter()
     }
     
-  /*  func createVersionFooter(){
-        guard let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {return}
-        var buildNumber = ""
-        if _isDebugAssertConfiguration(), let _buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String{
-            self.dataSource.append(("Debug Settings","more_debugSettings"))
-            buildNumber = " (\(_buildNumber))"
-        }
-      //  self.versionLabel.text = "Attendance Manager v.\(versionNumber)\(buildNumber)\n© Smart Logic Inc. 2017"
-    }
-    */
+    /*  func createVersionFooter(){
+     guard let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {return}
+     var buildNumber = ""
+     if _isDebugAssertConfiguration(), let _buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"]  as? String{
+     self.dataSource.append(("Debug Settings","more_debugSettings"))
+     buildNumber = " (\(_buildNumber))"
+     }
+     //  self.versionLabel.text = "Attendance Manager v.\(versionNumber)\(buildNumber)\n© Smart Logic Inc. 2017"
+     }
+     */
     
     func rateUs(){
         if let url = URL(string: "itms-apps://itunes.apple.com/app/id896023706"){
@@ -54,7 +54,7 @@ class MoreViewController: UITableViewController {
     func logOut(){
         FirebaseManager.shared.signOut()
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -76,7 +76,7 @@ class MoreViewController: UITableViewController {
         cell.iconImage.image = UIImage(named: "LastNameIcon")
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         

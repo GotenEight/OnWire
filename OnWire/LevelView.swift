@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
- class LevelView: UIView {
+class LevelView: UIView {
     
     static let shared = LevelView()
     
@@ -30,8 +30,8 @@ import Firebase
     var value = 0
     var level: Int!
     
-     var outlineColor: UIColor = UIColor.white
-     var pointCounterColor = UIColor.init(red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
+    var outlineColor: UIColor = UIColor.white
+    var pointCounterColor = UIColor.init(red: 52.0/255.0, green: 129.0/255.0, blue: 195.0/255.0, alpha: 1)
     var counterColor: UIColor?
     
     override func draw(_ rect: CGRect) {
@@ -47,9 +47,9 @@ import Firebase
             let angle = (.pi*3 / 2) * 1.0000001 + arcLengthPerPoint*CGFloat(i)
             let pointEndAngle: CGFloat = angle + arcLengthPerPoint
             let path = UIBezierPath(arcCenter: center,
-                                         radius: radius/2 - Constants.arcWidth/2,
-                                         startAngle: angle,
-                                         endAngle: pointEndAngle,clockwise: true)
+                                    radius: radius/2 - Constants.arcWidth/2,
+                                    startAngle: angle,
+                                    endAngle: pointEndAngle,clockwise: true)
             value = value + 1
             if value > 0 && value < 11 {
                 r -= 18.0
@@ -61,7 +61,7 @@ import Firebase
                 g += 7.0
                 b += 2.5
             }
-         
+            
             let counterColor = UIColor.init(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
             self.counterColor = counterColor
             pathArray.append(path)
@@ -70,7 +70,7 @@ import Firebase
             counterColorArray[i].setStroke()
             pathArray[i].stroke()
         }
-
+        
         
         // Create circle with points color
         if counter > 0 {
@@ -79,13 +79,13 @@ import Firebase
                 let arcLengthPerPoint = angleDifference / CGFloat(Constants.numberOfPoints)
                 let pointStartAngle = (.pi*3 / 2) * 1.0000001 + arcLengthPerPoint*CGFloat(i-1)
                 let pointEndAngle: CGFloat = pointStartAngle + arcLengthPerPoint
-            
-            
+                
+                
                 let pointPath = UIBezierPath(arcCenter: center,
-                                         radius: radius/2 - Constants.arcWidth/2,
-                                         startAngle: pointStartAngle,
-                                         endAngle: pointEndAngle,
-                                         clockwise: true)
+                                             radius: radius/2 - Constants.arcWidth/2,
+                                             startAngle: pointStartAngle,
+                                             endAngle: pointEndAngle,
+                                             clockwise: true)
                 pointPath.lineWidth = Constants.arcWidth
                 pointCounterColor.setStroke()
                 pointPath.stroke()
@@ -109,8 +109,8 @@ import Firebase
         outlineColor.setStroke()
         outlinePath.lineWidth = Constants.lineWidth
         outlinePath.stroke()
- 
-   // create markers
+        
+        // create markers
         
         let context = UIGraphicsGetCurrentContext()!
         context.saveGState()
@@ -120,7 +120,7 @@ import Firebase
         let markerSize: CGFloat = 57.0
         let markerPath = UIBezierPath(rect: CGRect(x: -markerWidth / 2, y: 0, width: markerWidth, height: markerSize))
         context.translateBy(x: rect.width / 2, y: rect.height / 2)
-       
+        
         for i in 1...Constants.numberOfPoints {
             context.saveGState()
             let angle = arcLengthPerPoint * CGFloat(i) + startAngle - .pi / 2

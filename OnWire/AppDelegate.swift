@@ -18,17 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     class var shared: AppDelegate{
         return UIApplication.shared.delegate as! AppDelegate
     }
-
+    
     var window: UIWindow?
     override init() {
         FirebaseApp.configure()
     }
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Database.database().isPersistenceEnabled = true
         
         return true
     }
-
+    
 }
 

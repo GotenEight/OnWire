@@ -52,12 +52,12 @@ class PlaningTableViewController: UITableViewController {
     func setNavigationViewController() {
         navigationController?.navigationBar.backgroundColor = UIColor.init(red: 122.0/255.0, green: 232.0/255.0, blue: 251.0/255.0, alpha: 1.0)
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return valueArray.count
@@ -70,12 +70,19 @@ class PlaningTableViewController: UITableViewController {
         let date = Date(timeIntervalSince1970: timeInterval)
         return formatter.string(from: date)
     }
-
+    
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        
+        let planText = planTextField.text
+        if planText == nil || planText == "" {
+            return
+        }
+        
+        planText?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         var dict = ["firstTime": firstTimePicker.date.timeIntervalSince1970,
                     "secondTime": secondTimePicker.date.timeIntervalSince1970,
-                    "planText": planTextField.text,
+                    "planText": planText,
                     "isDeleted": false ] as [String:Any]
         
         FirebaseManager.shared.planOnDayCreate(dict, completion: { planOnDayId in
@@ -91,7 +98,7 @@ class PlaningTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "planingCell", for: indexPath) as! PlaningTableViewCell
         let planOnDay = valueArray[indexPath.row]
         let fTime =  date(timeInterval: planOnDay.firstTime)
@@ -105,11 +112,32 @@ class PlaningTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
- 
-
     
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            
+            let planOnDay = self.valueArray[indexPath.row]
+            let alert = UIAlertController(title: "Delete",
+                                          message: "Are you shure?",
+                                          preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: "Delete",
+                                           style: .default) { action in
+                                            let dict = ["firstTime": planOnDay.firstTime,
+                                                        "secondTime": planOnDay.secondTime,
+                                                        "planText": planOnDay.planText,
+                                                        "isDeleted": true ] as [String:Any]
+                                            FirebaseManager.shared.updatePlanOnDay(self.valueArray[indexPath.row].objectId, info: dict)
+                                            self.valueArray.remove(at: indexPath.row)
+            }
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .default)
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        return [delete]
     }
 }

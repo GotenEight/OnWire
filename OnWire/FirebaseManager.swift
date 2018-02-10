@@ -90,9 +90,9 @@ class FirebaseManager: NSObject {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateInitialViewController() as? UITabBarController
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            if let window = appDelegate?.window, let vc = vc {
-                vc.selectedIndex = 2
-                window.rootViewController = vc
+        if let window = appDelegate?.window, let vc = vc {
+            vc.selectedIndex = 2
+            window.rootViewController = vc
         }
     }
     
@@ -130,6 +130,14 @@ class FirebaseManager: NSObject {
     }
     
     //MARK: Students
+    
+    //Update excisting student with given information
+    func updatePlanOnDay(_ planOnDayId:String,info:[String:Any]){
+        guard let currentUserId = self.userId else {return}
+        let data = info
+        ref.child("users/\(currentUserId)/planOnDay/\(planOnDayId)").updateChildValues(data)
+    }
+    
     func planOnDayAdded(completion: @escaping (_ planOnDay: EMPlaning)->Void){
         guard let currentUserId = self.userId else {return}
         let _ref = ref.child("users/\(currentUserId)/planOnDay")
@@ -212,5 +220,5 @@ class FirebaseManager: NSObject {
         let data = info
         ref.child("users/\(currentUserId)/branches/\(branchId)").updateChildValues(data)
     }
-
+    
 }

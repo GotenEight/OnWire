@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
- @IBDesignable class ProgressView: UIView {
+@IBDesignable class ProgressView: UIView {
     static let shared = ProgressView()
     var points = 0
     
